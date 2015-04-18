@@ -1,32 +1,22 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
   <head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'>
+    <script src="/resources/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/resources/vendor/firebase/firebase.js"></script>
+    <script src="/resources/vendor/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="/resources/js/tutorial.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/resources/css/tutorial.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/example.css">
+
+    <title>Your Firebase DEMO App</title>
   </head>
   <body>
-    <div id='messagesDiv'></div>
-    <input type='text' id='nameInput' placeholder='Name'>
-    <input type='text' id='messageInput' placeholder='Message'>
-    <script>
-      var myDataRef = new Firebase('https://uhvpiz3f9tz.firebaseio-demo.com/');
-      $('#messageInput').keypress(function (e) {
-        if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          myDataRef.push({name: name, text: text});
-          $('#messageInput').val('');
-        }
+    <script type="text/javascript">
+      $(document).ready(function () {
+        //ACTIVATE TUTORIAL PLAYER
+        tutorialPlayer.initialize();
       });
-      myDataRef.on('child_added', function(snapshot) {
-        var message = snapshot.val();
-        displayChatMessage(message.name, message.text);
-      });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
     </script>
   </body>
 </html>
